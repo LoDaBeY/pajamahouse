@@ -22,7 +22,7 @@ function ScrollUp() {
       >
         <Fab
           onClick={scrollToTop}
-          color="success"
+          color="error"
           size="small"
           aria-label="Scroll back to top"
         >

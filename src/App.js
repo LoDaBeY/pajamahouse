@@ -5,6 +5,7 @@ import ScrollUp from "../src/Components/Scroll-Fixed-Button-main/ScrollUp";
 import { Outlet } from "react-router-dom";
 import NavbarForPc from "../src/Components/Header/Navbar/NavbarForPc/NavbarForPc";
 
+
 function App() {
   const [mode, setMode] = useState(
     localStorage.getItem("currentTheme")

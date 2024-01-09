@@ -13,12 +13,12 @@ import SearchBar from "../Components/Header/Navbar/NavbarForPc/Search/SearchBar"
 
 function LandingPage() {
   return (
-    <Box sx={{ py: 8 }}>
+    <Box sx={{ py: 7 }}>
       <SearchBar/>
-      <YeniOzel />
-      <DisposalHeader />
+      <YeniOzel/>
       <PcListMenu />
       <Slider />
+      <DisposalHeader />
       <MiniSlider />
       <FixedUrunler />
       <NewItems />
