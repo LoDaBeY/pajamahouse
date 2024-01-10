@@ -1,7 +1,7 @@
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { useMemo, useState } from "react";
 import { getDesignTokens } from "./Theme/Theme";
-import ScrollUp from "../src/Components/Scroll-Fixed-Button-main/ScrollUp";
+import ScrollUp from "./Components/Slider/Scroll-Fixed-Button-main/ScrollUp";
 import { Outlet } from "react-router-dom";
 import NavbarForPc from "../src/Components/Header/Navbar/NavbarForPc/NavbarForPc";
 

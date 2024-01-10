@@ -1,4 +1,3 @@
-
 .swiper {
   height: 100%;
   width: 100%;
@@ -13,6 +12,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
+
 }
 
 .swiper-slide img {
@@ -20,6 +21,19 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+
 }
 
+@media only screen and (max-width: 600px) {
 
+  /* apply this rule for devices smaller than 480px */
+  .swiper-slide  img {
+
+    height: 100vh;
+    object-fit: cover;
+    width: 100%
+
+  }
+}
+
+;

@@ -1,0 +1,23 @@
+
+
+
+#SwiperSlide {
+  text-align: center;
+  font-size: 10px;
+  background: transparent;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#SwiperSlide img {
+  display: block;
+  border-radius: 13px;
+}
+
+.swiper-wrapper{
+  align-items: flex-start;
+}

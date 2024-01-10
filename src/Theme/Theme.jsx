@@ -11,7 +11,7 @@ export const getDesignTokens = (mode) => ({
             primary: "#2B3445",
           },
           neutral: {
-            main: "#64748B",
+            main: "#F5F5F5",
           },
 
           favColor: {
@@ -24,7 +24,7 @@ export const getDesignTokens = (mode) => ({
       : {
           // palette values for dark mode
           neutral: {
-            main: "#64748B",
+            main: "#01949A",
           },
 
           favColor: {
