@@ -13,6 +13,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Modal,
   Paper,
   Stack,
   useMediaQuery,
@@ -36,7 +37,9 @@ const menuItems = [
   {
     title: "Üye Girişi / Üye Ol",
     icon: <PersonOutlineIcon />,
-    link: "uye-girisi",
+    link: "/",
+    handleOpen: true 
+    
   },
   { title: "Kargo Takip", icon: <LocalShippingIcon />, link: "kargo-takip" },
   { title: "Favorilerim", icon: <FavoriteBorderIcon />, link: "favorilerim" },
@@ -49,6 +52,18 @@ const menuItems = [
   { title: "Whatsapp İletişim", icon: <WhatsApp />, link: "whatsapp-iletisim" },
 ];
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
 function NavbarForPc({ setMode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const handleDrawerToggle = () => {
@@ -57,6 +72,10 @@ function NavbarForPc({ setMode }) {
   const theme = useTheme();
   const isLargeScreen = useMediaQuery("(min-width:800px)");
   const [appbarPosition, setAppbarPosition] = useState("relative");
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -190,7 +209,12 @@ function NavbarForPc({ setMode }) {
                                 }}
                                 to={item.link}
                               >
-                                <ListItemButton>
+                                <ListItemButton
+                                  onClick={
+                                    item.handleOpen ? handleOpen : undefined
+                                  }
+                                >
+                                  {" "}
                                   <ListItemIcon>{item.icon}</ListItemIcon>
                                   <ListItemText
                                     sx={{
@@ -294,6 +318,26 @@ function NavbarForPc({ setMode }) {
           handleDrawerToggle={handleDrawerToggle}
         />
       </Box>
+
+      {true && (
+        <div>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                Text in a modal
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+              </Typography>
+            </Box>
+          </Modal>
+        </div>
+      )}
     </Box>
   );
 }

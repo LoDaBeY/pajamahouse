@@ -138,7 +138,8 @@ function MiniSlider() {
             spaceBetween: 50,
           },
         }}
-        style={{ minWidth: "100%", minHeight: "620px" }}
+        style={{ minWidth: "100%", minHeight: "620px", 
+      }}
         className="mySwiper"
       >
         {MiniSliderItems.map((item) => {
