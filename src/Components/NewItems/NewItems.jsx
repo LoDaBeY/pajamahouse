@@ -12,19 +12,19 @@ const NewItemsData = [
   },
   {
     Image:
-      "https://cdn.pijamaevi.com/cdn-cgi/image/format=auto,height=500/https://www.pijamaevi.com/mavi-stripe-desenli-uzun-kollu-kapsonlu-pijama-takimi-mavi-stripe-pijama-takimi-pijamaevi-20953-35-K.jpg",
+      "https://cdn.pijamaevi.com/cdn-cgi/image/format=auto,height=500/https://www.pijamaevi.com/siyah-jantung-desenli-onden-dugmeli-pelus-polar-pijama-takimi-onden-dugmeli-pijama-takimi-pijamaevi-20928-35-K.jpg",
     Name: "Mavi Stripe Desenli Uzun Kollu Kapüşonlu Pijama Takımı",
     Price: "349.99",
   },
   {
     Image:
-      "https://cdn.pijamaevi.com/cdn-cgi/image/format=auto,height=500/https://www.pijamaevi.com/mor-stripe-desenli-uzun-kollu-kapsonlu-pijama-takimi-mor-stripe-pijama-takimi-pijamaevi-20952-35-K.jpg",
+      "https://cdn.pijamaevi.com/cdn-cgi/image/format=auto,height=500/https://www.pijamaevi.com/indigo-jantung-desenli-onden-dugmeli-pelus-polar-pijama-takimi-onden-dugmeli-pijama-takimi-pijamaevi-20934-35-K.jpg",
     Name: "Mor Stripe Desenli Uzun Kollu Kapüşonlu Pijama Takımı",
     Price: "399.99",
   },
   {
     Image:
-      "https://cdn.pijamaevi.com/cdn-cgi/image/format=auto,height=500/https://www.pijamaevi.com/siyah-dotted-desenli-uzun-kollu-kapsonlu-pijama-takimi-siyah-dotted-pijama-takimi-pijamaevi-20951-35-K.jpg",
+      "https://cdn.pijamaevi.com/cdn-cgi/image/format=auto,height=500/https://www.pijamaevi.com/siyah-dotted-desenli-onden-dugmeli-pelus-polar-pijama-takimi-onden-dugmeli-pijama-takimi-pijamaevi-20940-35-K.jpg",
     Name: "Siyah Dotted Desenli Uzun Kollu Kapüşonlu Pijama Takımı",
     Price: "429.99",
   },

@@ -116,13 +116,17 @@ function PcListMenu() {
             pl: 0,
             pr: 0,
           },
+          textAlign: "center",
+
         }}
       >
         <Container
           sx={{
-            display: "flex",
+            display: "grid",
             width: "100%",
-            justifyContent: "center",
+            gridTemplateColumns: "repeat(10, 1fr)",
+            justifyItems: "center",
+            gridTemplateRows: "",
           }}
         >
           {/* YILBAŞI⛄ frist one */}

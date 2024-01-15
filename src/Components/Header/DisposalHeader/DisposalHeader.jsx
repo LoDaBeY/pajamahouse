@@ -17,7 +17,7 @@ function DisposalHeader() {
     >
       <Stack
         direction={"row"}
-        gap={9}
+        gap={6}
         sx={{
           width: "100%",
           alignItems: "center",

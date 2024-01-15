@@ -137,16 +137,25 @@ function MiniSlider() {
             slidesPerView: 4,
             spaceBetween: 50,
           },
+          
         }}
-        style={{ minWidth: "100%", minHeight: "620px", 
-      }}
+        style={{ minWidth: "100%", minHeight: "640px" }}
         className="mySwiper"
       >
         {MiniSliderItems.map((item) => {
           return (
             <SwiperSlide key={item.Title} id="SwiperSlide">
-              <Tooltip  title={item.Title}>
-                <Stack sx={{ width: "90%", cursor: "pointer", ':hover .MiniSliderImage' : {scale: "0.9", transition: "0.55s"} }}>
+              <Tooltip title={item.Title}>
+                <Stack
+                  sx={{
+                    width: "90%",
+                    cursor: "pointer",
+                    ":hover .MiniSliderImage": {
+                      scale: "0.9",
+                      transition: "0.55s",
+                    },
+                  }}
+                >
                   <img
                     style={{
                       width: "100%",
@@ -180,14 +189,22 @@ function MiniSlider() {
                   </IconButton>
 
                   <Typography
-                    sx={{ overflow: "clip" }}
+                    sx={{
+                      overflow: "clip",
+                      p: 1,
+                      color: theme.palette.mode === "light" ? "black" : "white",
+                    }}
                     variant="body2"
                     color="black"
                   >
                     {item.Title}{" "}
                   </Typography>
                   <Typography
-                    sx={{ bgcolor: "#fb5756", borderRadius: "20px" }}
+                    sx={{
+                      bgcolor: "#fb5756",
+                      borderRadius: "20px",
+                      p: "3px",
+                    }}
                     variant="caption"
                     color="white"
                   >
@@ -203,9 +220,8 @@ function MiniSlider() {
                       {item.ActualPrice}
                     </Typography>
                     <Typography
-                      sx={{ textDecoration: "line-through" }}
+                      sx={{ textDecoration: "line-through", color: theme.palette.mode === "light" ? "black" : "white", }}
                       variant="body2"
-                      color="inherit"
                     >
                       {item.FakePrice}
                     </Typography>

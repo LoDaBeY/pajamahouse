@@ -70,7 +70,7 @@ function Footer() {
             gap: 2,
             alignItems: { xs: "center", sm: "center", md: "flex-start" },
             mb: { xs: 3, sm: 3, md: 0 },
-            mr: { xs: 0, md: 1 },
+            mr: { xs: 0, md: 3 },
           }}
         >
           <Link to={"/"}>
@@ -108,11 +108,12 @@ function Footer() {
 
         <Box
           sx={{
+            maxWidth: "100%",
             flexGrow: 1,
-            display: "flex",
-            justifyContent: "space-between",
-            gap: 2,
+            display: "grid",
+            gridTemplateColumns: { xs: "repeat(2, 1fr)", sm: "repeat(4, 1fr)" },
             flexWrap: "wrap",
+            gap: "20px",
           }}
         >
           {footerItems.map((item, index) => (

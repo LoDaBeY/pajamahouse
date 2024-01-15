@@ -58,7 +58,7 @@ function IconsSeaction() {
         return (
           <Box
             key={item.title}
-            sx={{ display: "flex", alignItems: "center", gap: 2 }}
+            sx={{ display: "flex", alignItems: "center", gap: 3 }}
           >
             <IconButton
               sx={{
@@ -75,7 +75,7 @@ function IconsSeaction() {
               {item.icon}
             </IconButton>
 
-            <Stack>
+            <Stack gap={1}>
               <Typography variant="body1" color="inherit">
                 {item.title}
               </Typography>
