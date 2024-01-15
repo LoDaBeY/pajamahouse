@@ -106,6 +106,7 @@ function SignIn({ handleClose, open }) {
                 sx={{ width: { xs: "100%", sm: "120px" } }}
                 variant="contained"
                 color="secondary"
+                onClick={handleClose}
               >
 
               <Link style={{textDecoration: "none", color: "inherit"}} to={"SignUp"}>
