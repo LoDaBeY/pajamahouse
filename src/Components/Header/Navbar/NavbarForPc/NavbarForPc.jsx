@@ -53,6 +53,7 @@ const menuItems = [
 
 function NavbarForPc({ setMode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
@@ -61,8 +62,12 @@ function NavbarForPc({ setMode }) {
   const [appbarPosition, setAppbarPosition] = useState("relative");
 
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -153,6 +158,7 @@ function NavbarForPc({ setMode }) {
                   ":hover .MuiBox-root": { display: "block" },
                 }}
                 aria-label="PersonIcon"
+                
               >
                 <PersonIcon />
                 <Typography

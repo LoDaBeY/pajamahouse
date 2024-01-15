@@ -2,6 +2,7 @@ import { Box, Typography, IconButton, useTheme, Tooltip } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { ShoppingCart } from "@mui/icons-material";
 
 const NewItemsData = [
   {
@@ -94,7 +95,11 @@ function NewItems() {
                       sm: "300px",
                       lg: "350px",
 
-                      ":hover .Image": { scale: "1.1", rotate: "1deg", transition: "0.55s" },
+                      ":hover .Image": {
+                        scale: "1.1",
+                        rotate: "1deg",
+                        transition: "0.55s",
+                      },
                     },
                   }}
                 >
@@ -124,6 +129,28 @@ function NewItems() {
                     onClick={() => {}}
                   >
                     <FavoriteBorderIcon />
+                  </IconButton>
+
+                  <IconButton
+                    sx={{
+                      position: "absolute",
+                      top: 5,
+                      left: 23,
+                      bgcolor:
+                        theme.palette.mode === "light" ? "black" : "white",
+                      fontSize: "10px",
+                      ":hover": {
+                        bgcolor:
+                          theme.palette.mode === "light"
+                            ? "red"
+                            : "rebeccapurple",
+                      },
+                      color: theme.palette.mode === "light" ? "white" : "black",
+                    }}
+                    aria-label="Favorilerim"
+                    onClick={() => {}}
+                  >
+                    <ShoppingCart />
                   </IconButton>
 
                   <Typography variant="body1" color="inherit">

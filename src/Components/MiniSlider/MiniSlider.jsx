@@ -7,6 +7,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import Typography from "@mui/material/Typography";
 import { IconButton, Stack, Tooltip, useTheme } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { ShoppingCart } from "@mui/icons-material";
 
 const MiniSliderItems = [
   {
@@ -137,7 +138,6 @@ function MiniSlider() {
             slidesPerView: 4,
             spaceBetween: 50,
           },
-          
         }}
         style={{ minWidth: "100%", minHeight: "640px" }}
         className="mySwiper"
@@ -187,6 +187,27 @@ function MiniSlider() {
                   >
                     <FavoriteBorderIcon />
                   </IconButton>
+                  <IconButton
+                    sx={{
+                      position: "absolute",
+                      top: 5,
+                      left: 23,
+                      bgcolor:
+                        theme.palette.mode === "light" ? "black" : "white",
+                      fontSize: "10px",
+                      ":hover": {
+                        bgcolor:
+                          theme.palette.mode === "light"
+                            ? "red"
+                            : "rebeccapurple",
+                      },
+                      color: theme.palette.mode === "light" ? "white" : "black",
+                    }}
+                    aria-label="Favorilerim"
+                    onClick={() => {}}
+                  >
+                    <ShoppingCart />
+                  </IconButton>
 
                   <Typography
                     sx={{
@@ -216,12 +237,22 @@ function MiniSlider() {
                     justifyContent={"space-evenly"}
                     sx={{ mt: 1 }}
                   >
-                    <Typography variant="body2" color="error">
+                    <Typography
+                      fontWeight={"bolder"}
+                      variant="body1"
+                      color="error"
+                    >
                       {item.ActualPrice}
                     </Typography>
                     <Typography
-                      sx={{ textDecoration: "line-through", color: theme.palette.mode === "light" ? "black" : "white", }}
-                      variant="body2"
+                      sx={{
+                        textDecoration: "line-through",
+
+                      }}
+                      variant="body1"
+                      fontWeight={"bold"}
+                      className="TypographyForFakePrice"
+                      
                     >
                       {item.FakePrice}
                     </Typography>

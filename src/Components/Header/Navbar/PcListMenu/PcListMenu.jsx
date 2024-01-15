@@ -124,9 +124,8 @@ function PcListMenu() {
           sx={{
             display: "grid",
             width: "100%",
-            gridTemplateColumns: "repeat(10, 1fr)",
+            gridTemplateColumns: "repeat(10, 2fr)",
             justifyItems: "center",
-            gridTemplateRows: "",
           }}
         >
           {/* YILBAŞI⛄ frist one */}
@@ -498,7 +497,7 @@ function PcListMenu() {
               alignItems: "center",
               ":hover .MuiBox-root": { display: "block" },
               mx: 0,
-              width: "100px",
+              width: "120px",
             }}
           >
             <Typography
@@ -507,7 +506,7 @@ function PcListMenu() {
               color="inherit"
               className="borderAnimation"
             >
-              ÇOK SATANLAR❤️
+              ÇOK SATANLAR  ❤️
             </Typography>
           </Box>
         </Container>

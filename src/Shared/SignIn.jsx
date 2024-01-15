@@ -11,13 +11,21 @@ import {
 } from "@mui/material";
 import { Typography, Button } from "@mui/material";
 import { useState } from "react";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../FirebaseConfig/config";
+import { Link } from "react-router-dom";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: {xs: "95%", sm: 400},
+  width: { xs: "95%", sm: 400 },
   bgcolor: "background.paper",
   border: "1px solid #000",
   boxShadow: 32,
@@ -25,6 +33,9 @@ const style = {
 };
 
 function SignIn({ handleClose, open }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => {
@@ -32,13 +43,12 @@ function SignIn({ handleClose, open }) {
   };
 
   return (
-    <Box sx={{ position: "relative", width: "100%" }}>
+    <Box sx={{ position: "relative" }}>
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-
       >
         <Box sx={style}>
           <IconButton
@@ -67,46 +77,62 @@ function SignIn({ handleClose, open }) {
                 required
                 id="outlined-required"
                 label="Email"
-                defaultValue=""
+                defaultValue={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
 
-              <FormControl sx={{}} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password">
-                  Password
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-password"
-                  type={showPassword ? "text" : "password"}
-                  endAdornment={
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  }
-                  label="Password"
-                />
-              </FormControl>
+              <TextField
+                required
+                id="outlined-password-input"
+                label="Password"
+                type="password"
+                autoComplete="current-password"
+                defaultValue={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </Stack>
 
             <Stack
-              sx={{ justifyContent: "space-between", mt: 3, flexDirection: {xs: "column", sm: "row"}, alignItems: {xs: "center", sm: "normal"}, gap: 2 }}
+              sx={{
+                justifyContent: "space-between",
+                mt: 3,
+                flexDirection: { xs: "column", sm: "row" },
+                alignItems: { xs: "center", sm: "normal" },
+                gap: 2,
+              }}
             >
+              
               <Button
-                sx={{ width: {xs: "100%", sm: "120px"} }}
+                sx={{ width: { xs: "100%", sm: "120px" } }}
                 variant="contained"
                 color="secondary"
               >
-                Üye Ol
+
+              <Link style={{textDecoration: "none", color: "inherit"}} to={"SignUp"}>
+              Üye Ol
+
+              </Link>
+
               </Button>
 
               <Button
-                sx={{ width: {xs: "100%", sm: "120px"} }}
+                sx={{ width: { xs: "100%", sm: "120px" } }}
                 variant="contained"
                 color="secondary"
+                onClick={() => {
+                  signInWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                      // Signed in
+                      const user = userCredential.user;
+                      // ...
+                      console.log("done");
+                    })
+                    .catch((error) => {
+                      const errorCode = error.code;
+                      const errorMessage = error.message;
+                      console.log(error.message);
+                    });
+                }}
               >
                 Giriş Yap
               </Button>
