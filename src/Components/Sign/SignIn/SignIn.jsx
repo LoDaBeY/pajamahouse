@@ -1,24 +1,18 @@
-import { Box, IconButton } from "@mui/material";
-import { Close, Visibility, VisibilityOff } from "@mui/icons-material";
+import {  Box, IconButton } from "@mui/material";
+import { Close} from "@mui/icons-material";
 import {
   Divider,
-  FormControl,
-  InputLabel,
   Modal,
-  OutlinedInput,
   Stack,
   TextField,
 } from "@mui/material";
 import { Typography, Button } from "@mui/material";
 import { useState } from "react";
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../FirebaseConfig/config";
-import { Link } from "react-router-dom";
+import { auth } from "../../../FirebaseConfig/config";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -36,14 +30,11 @@ function SignIn({ handleClose, open }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
+  const navigate = useNavigate();
 
   return (
     <Box sx={{ position: "relative" }}>
+
       <Modal
         open={open}
         onClose={handleClose}
@@ -101,19 +92,16 @@ function SignIn({ handleClose, open }) {
                 gap: 2,
               }}
             >
-              
               <Button
                 sx={{ width: { xs: "100%", sm: "120px" } }}
                 variant="contained"
                 color="secondary"
-                onClick={handleClose}
+                onClick={() => {
+                  handleClose();
+                  navigate("/SignUp");
+                }}
               >
-
-              <Link style={{textDecoration: "none", color: "inherit"}} to={"SignUp"}>
-              Üye Ol
-
-              </Link>
-
+                Üye Ol
               </Button>
 
               <Button
@@ -127,6 +115,8 @@ function SignIn({ handleClose, open }) {
                       const user = userCredential.user;
                       // ...
                       console.log("done");
+                      navigate("/");
+                      handleClose();
                     })
                     .catch((error) => {
                       const errorCode = error.code;
@@ -139,7 +129,18 @@ function SignIn({ handleClose, open }) {
               </Button>
             </Stack>
           </Box>
+
+          {/* {true ? (
+        <Alert sx={{ mt: 2 }} severity="error">
+          This is an error message!
+        </Alert>
+      ) : (
+        <Alert severity="success">This is a success message!</Alert>
+      )} */}
+
+
         </Box>
+        
       </Modal>
     </Box>
   );

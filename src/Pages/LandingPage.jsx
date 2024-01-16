@@ -8,27 +8,51 @@ import IconsSeaction from "../Components/IconSection/IconsSeaction";
 import Footer from "../Components/Footer/Footer";
 import { Box, Divider, useMediaQuery, useTheme } from "@mui/material";
 import SearchBar from "../Components/Header/Navbar/NavbarForPc/Search/SearchBar";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../FirebaseConfig/config";
+import Loading from "../Shared/Loading/Loading";
 
 function LandingPage() {
   const isLargeScreen = useMediaQuery("(max-width:799px)");
   const theme = useTheme();
+  const [user, loading] = useAuthState(auth);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <Box sx={{ mt: 3 }}>
       <SearchBar />
       {isLargeScreen && <YeniOzel />}
+      {!user ? (
+        <Divider
+          sx={{
+            my: 2,
+            mr: 1,
+            ml: 1,
+            border:
+              theme.palette.mode === "light"
+                ? "1px solid #ededed"
+                : "1px solid white",
+          }}
+        />
+      ) : null}
       <PcListMenu />
       <Slider />
-      <Divider
-        sx={{
-          my: 2,
-          mr: 1,
-          ml: 1,
-          border:
-            theme.palette.mode === "light"
-              ? "1px solid black"
-              : "1px solid white",
-        }}
-      />
+      {user ? (
+        <Divider
+          sx={{
+            my: 2,
+            mr: 1,
+            ml: 1,
+            border:
+              theme.palette.mode === "light"
+                ? "1px solid black"
+                : "1px solid white",
+          }}
+        />
+      ) : null}
       <MiniSlider />
       <Divider
         sx={{

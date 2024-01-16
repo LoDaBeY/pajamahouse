@@ -19,7 +19,11 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useTheme, Typography } from "@mui/material";
-import { DarkModeOutlined, LightModeOutlined } from "@mui/icons-material";
+import {
+  DarkModeOutlined,
+  LightModeOutlined,
+  Person,
+} from "@mui/icons-material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -31,7 +35,10 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { Link } from "react-router-dom";
-import SignIn from "../../../../Shared/SignIn";
+import SignIn from "../../../Sign/SignIn/SignIn";
+import { signOut } from "firebase/auth";
+import { auth } from "../../../../FirebaseConfig/config";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const menuItems = [
   {
@@ -40,6 +47,14 @@ const menuItems = [
     link: "/",
     handleOpen: true,
   },
+
+  {
+    title: "Sign Out",
+    icon: <Person />,
+    link: "/",
+    SignOutBtn: true,
+  },
+
   { title: "Kargo Takip", icon: <LocalShippingIcon />, link: "kargo-takip" },
   { title: "Favorilerim", icon: <FavoriteBorderIcon />, link: "favorilerim" },
   { title: "Yardım", icon: <HelpOutlineIcon />, link: "yardim" },
@@ -52,6 +67,8 @@ const menuItems = [
 ];
 
 function NavbarForPc({ setMode }) {
+  const [user] = useAuthState(auth);
+
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -88,6 +105,25 @@ function NavbarForPc({ setMode }) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const SignOutBtn = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        console.log("Sign-out successful.");
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
+  const handleButtonClick = (item) => {
+    if (item.handleOpen) {
+      handleOpen();
+    } else if (item.SignOutBtn) {
+      SignOutBtn();
+    } else {
+    }
+  };
 
   return (
     <Box>
@@ -158,7 +194,6 @@ function NavbarForPc({ setMode }) {
                   ":hover .MuiBox-root": { display: "block" },
                 }}
                 aria-label="PersonIcon"
-                
               >
                 <PersonIcon />
                 <Typography
@@ -188,8 +223,9 @@ function NavbarForPc({ setMode }) {
                   >
                     <nav aria-label="secondary mailbox folders">
                       <List>
-                        {menuItems.map((item) => {
-                          return (
+                        {menuItems.map((item) =>
+                          (user && item.title !== "Üye Girişi / Üye Ol") ||
+                          (!user && item.title === "Üye Girişi / Üye Ol") ? (
                             <ListItem
                               className="borderAnimation"
                               key={item.title}
@@ -203,11 +239,8 @@ function NavbarForPc({ setMode }) {
                                 to={item.link}
                               >
                                 <ListItemButton
-                                  onClick={
-                                    item.handleOpen ? handleOpen : undefined
-                                  }
+                                  onClick={() => handleButtonClick(item)}
                                 >
-                                  {" "}
                                   <ListItemIcon>{item.icon}</ListItemIcon>
                                   <ListItemText
                                     sx={{
@@ -220,8 +253,8 @@ function NavbarForPc({ setMode }) {
                                 </ListItemButton>
                               </Link>
                             </ListItem>
-                          );
-                        })}
+                          ) : null
+                        )}
                       </List>
                     </nav>
                   </Paper>
@@ -308,8 +341,7 @@ function NavbarForPc({ setMode }) {
 
         <NavbarForPhone
           mobileOpen={mobileOpen}
-          handleDrawerToggle={handleDrawerToggle}
-        />
+          handleDrawerToggle={handleDrawerToggle} handleOpen={handleOpen}        />
       </Box>
 
       {open && <SignIn handleClose={handleClose} open={open} />}

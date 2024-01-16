@@ -23,6 +23,8 @@ import { Link } from "react-router-dom";
 import { ExpandLess, ExpandMore, WhatsApp } from "@mui/icons-material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { auth } from "../../../../FirebaseConfig/config";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const drawerWidth = 320;
 const PajamaTakımı = [
@@ -47,11 +49,12 @@ const ÇorapMenu = ["Erkek Çorap", "Kadın Çorap"];
 
 const container = window !== undefined ? () => window.document.body : undefined;
 
-function NavbarForPhone({ mobileOpen, handleDrawerToggle }) {
+function NavbarForPhone({ mobileOpen, handleDrawerToggle, handleOpen }) {
+  const [user] = useAuthState(auth);
   const [open, setOpen] = useState(false);
   const [ErkekMenu, setErkekMenu] = useState(false);
   const [Çorap, setÇorap] = useState(false);
-const theme = useTheme()
+  const theme = useTheme();
   const handleClick = () => {
     setOpen(!open);
   };
@@ -91,10 +94,16 @@ const theme = useTheme()
         justifyContent={"space-around"}
         sx={{ my: 1, width: "100%" }}
       >
-        <Button
+        {!user?         <Button
           color="inherit"
           variant="contained"
-          sx={{ bgcolor: "#ff85bc", width: "150px", ':hover' : {bgcolor: "#ff85bc"} }}
+          onClick={handleOpen}
+          sx={{
+            bgcolor: "#ff85bc",
+            width: "150px",
+            ":hover": { bgcolor: "#ff85bc" },
+            
+          }}
           startIcon={<PersonIcon />}
         >
           <Link
@@ -108,10 +117,14 @@ const theme = useTheme()
           >
             Hesap
           </Link>
-        </Button>
+        </Button>: null}
         <Button
           color="error"
-          sx={{ bgcolor: "#07060c", width: "150px", ':hover' : {bgcolor: "#07060c"} }}
+          sx={{
+            bgcolor: "#07060c",
+            width: "150px",
+            ":hover": { bgcolor: "#07060c" },
+          }}
           variant="contained"
           startIcon={<LocalShippingIcon />}
         >
@@ -346,7 +359,11 @@ const theme = useTheme()
         </Button>
 
         {/* The Cart and how much it cost */}
-        <ListItem sx={{ bgcolor: theme.palette.mode === "light"? "whitesmoke" : "inherit",  }}>
+        <ListItem
+          sx={{
+            bgcolor: theme.palette.mode === "light" ? "whitesmoke" : "inherit",
+          }}
+        >
           <ListItemAvatar>
             <Avatar>
               <ShoppingCartIcon />
@@ -358,12 +375,20 @@ const theme = useTheme()
               width: "100%",
               textDecoration: "none",
               color: "inherit",
-              alignItems: "center"
+              alignItems: "center",
             }}
           >
-            <Stack direction={"row"} alignItems={"center"} >
-              <ListItemText sx={{ '.MuiTypography-root': {fontWeight: "700"} }}  primary="Sepetin" color="inherit" />
-              <Typography sx={{fontWeight: "700" }} variant="caption" color="inherit">
+            <Stack direction={"row"} alignItems={"center"}>
+              <ListItemText
+                sx={{ ".MuiTypography-root": { fontWeight: "700" } }}
+                primary="Sepetin"
+                color="inherit"
+              />
+              <Typography
+                sx={{ fontWeight: "700" }}
+                variant="caption"
+                color="inherit"
+              >
                 $19.99
               </Typography>
             </Stack>

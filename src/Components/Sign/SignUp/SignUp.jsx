@@ -9,16 +9,17 @@ import {
   IconButton,
   Container,
 } from "@mui/material";
-import Footer from "../Footer/Footer";
-import SearchBar from "../../Components/Header/Navbar/NavbarForPc/Search/SearchBar";
-import PcListMenu from "../../Components/Header/Navbar/PcListMenu/PcListMenu";
-import YeniOzel from "../../Components/Header/Navbar/YeniOzel/YeniOzel";
-import IconsSeaction from "../../Components/IconSection/IconsSeaction";
+import Footer from "../../Footer/Footer";
+import SearchBar from "../../Header/Navbar/NavbarForPc/Search/SearchBar";
+import PcListMenu from "../../Header/Navbar/PcListMenu/PcListMenu";
+import YeniOzel from "../../Header/Navbar/YeniOzel/YeniOzel";
+import IconsSeaction from "../../IconSection/IconsSeaction";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import { Person } from "@mui/icons-material";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../FirebaseConfig/config";
+import { auth } from "../../../FirebaseConfig/config";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const theme = useTheme();
@@ -27,6 +28,7 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [FristNameOfTheUser, setFristNameOfTheUser] = useState("");
   const [LastNameOfTheUser, setLastNameOfTheUser] = useState("");
+  const navigate = useNavigate();
 
   return (
     <Box>
@@ -101,7 +103,7 @@ function SignUp() {
                     // Signed up
                     const user = userCredential.user;
                     console.log("user created successfully");
-
+                    navigate("/")
                     // ...
                   })
                   .catch((error) => {
@@ -111,7 +113,6 @@ function SignUp() {
 
                     // ..
                   });
-
               }}
               sx={{ width: "120px" }}
               variant="contained"

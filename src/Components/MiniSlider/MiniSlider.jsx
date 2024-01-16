@@ -8,6 +8,8 @@ import Typography from "@mui/material/Typography";
 import { IconButton, Stack, Tooltip, useTheme } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { ShoppingCart } from "@mui/icons-material";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from "../../FirebaseConfig/config";
 
 const MiniSliderItems = [
   {
@@ -110,7 +112,10 @@ const MiniSliderItems = [
 
 function MiniSlider() {
   const theme = useTheme();
+  const [user, loading, error] = useAuthState(auth);
 
+
+if (user) {
   return (
     <>
       <Swiper
@@ -265,6 +270,7 @@ function MiniSlider() {
       </Swiper>
     </>
   );
+}
 }
 
 export default MiniSlider;

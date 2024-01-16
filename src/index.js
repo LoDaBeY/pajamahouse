@@ -12,7 +12,7 @@ import {
 } from "react-router-dom";
 import ErrorPage from "../src/Pages/Error/ErrorPage";
 import {ThemeProvider} from "./Content/Context";
-import SignUp from "../src/Components/SignUp/SignUp";
+import SignUp from "../src/Components/Sign/SignUp/SignUp";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

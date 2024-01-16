@@ -3,7 +3,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { ShoppingCart } from "@mui/icons-material";
-
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../FirebaseConfig/config";
 const NewItemsData = [
   {
     Image:
@@ -57,117 +58,131 @@ const NewItemsData = [
 
 function NewItems() {
   const theme = useTheme();
+  const [user, loading, error] = useAuthState(auth);
 
-  return (
-    <Box sx={{ width: "100%", mb: 5 }}>
-      <Typography textAlign={"center"} variant="h6" color="inherit">
-        Yeni Ürünler
-      </Typography>
 
-      <Box>
-        <Link
-          style={{ textDecoration: " none", color: "inherit", marginLeft: 50 }}
-          to={""}
-        >
-          <Typography variant="caption">Tümünü Görüntüle + </Typography>
-        </Link>
+if (loading) {
+  
+}
 
-        <Box
-          sx={{
-            mt: 6,
-            position: "relative",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-            flexWrap: "wrap",
-            width: "100%",
-          }}
-        >
-          {NewItemsData.map((item) => (
-            <Tooltip key={item.Name} title={item.Name} arrow>
-              <div style={{ position: "relative", margin: 15 }}>
-                <Box
-                  sx={{
-                    position: "relative",
-                    width: {
-                      xs: "250px",
-                      sm: "300px",
-                      lg: "350px",
+  if (user) {
+    return (
+      <Box sx={{ width: "100%", mb: 5 }}>
+        <Typography textAlign={"center"} variant="h6" color="inherit">
+          Yeni Ürünler
+        </Typography>
 
-                      ":hover .Image": {
-                        scale: "1.1",
-                        rotate: "1deg",
-                        transition: "0.55s",
-                      },
-                    },
-                  }}
-                >
-                  <img
-                    className="Image"
-                    src={item.Image}
-                    alt={item.Name}
-                    style={{ borderRadius: "10px", width: "100%" }}
-                  />
-                  <IconButton
+        <Box>
+          <Link
+            style={{
+              textDecoration: " none",
+              color: "inherit",
+              marginLeft: 50,
+            }}
+            to={""}
+          >
+            <Typography variant="caption">Tümünü Görüntüle + </Typography>
+          </Link>
+
+          <Box
+            sx={{
+              mt: 6,
+              position: "relative",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              textAlign: "center",
+              flexWrap: "wrap",
+              width: "100%",
+            }}
+          >
+            {NewItemsData.map((item) => (
+              <Tooltip key={item.Name} title={item.Name} arrow>
+                <div style={{ position: "relative", margin: 15 }}>
+                  <Box
                     sx={{
-                      position: "absolute",
-                      top: 5,
-                      right: 5,
-                      bgcolor:
-                        theme.palette.mode === "light" ? "black" : "white",
-                      fontSize: "10px",
-                      ":hover": {
-                        bgcolor:
-                          theme.palette.mode === "light"
-                            ? "red"
-                            : "rebeccapurple",
+                      position: "relative",
+                      width: {
+                        xs: "250px",
+                        sm: "300px",
+                        lg: "350px",
+
+                        ":hover .Image": {
+                          scale: "1.1",
+                          rotate: "1deg",
+                          transition: "0.55s",
+                        },
                       },
-                      color: theme.palette.mode === "light" ? "white" : "black",
                     }}
-                    aria-label="Favorilerim"
-                    onClick={() => {}}
                   >
-                    <FavoriteBorderIcon />
-                  </IconButton>
-
-                  <IconButton
-                    sx={{
-                      position: "absolute",
-                      top: 5,
-                      left: 23,
-                      bgcolor:
-                        theme.palette.mode === "light" ? "black" : "white",
-                      fontSize: "10px",
-                      ":hover": {
+                    <img
+                      className="Image"
+                      src={item.Image}
+                      alt={item.Name}
+                      style={{ borderRadius: "10px", width: "100%" }}
+                    />
+                    <IconButton
+                      sx={{
+                        position: "absolute",
+                        top: 5,
+                        right: 5,
                         bgcolor:
-                          theme.palette.mode === "light"
-                            ? "red"
-                            : "rebeccapurple",
-                      },
-                      color: theme.palette.mode === "light" ? "white" : "black",
-                    }}
-                    aria-label="Favorilerim"
-                    onClick={() => {}}
-                  >
-                    <ShoppingCart />
-                  </IconButton>
+                          theme.palette.mode === "light" ? "black" : "white",
+                        fontSize: "10px",
+                        ":hover": {
+                          bgcolor:
+                            theme.palette.mode === "light"
+                              ? "red"
+                              : "rebeccapurple",
+                        },
+                        color:
+                          theme.palette.mode === "light" ? "white" : "black",
+                      }}
+                      aria-label="Favorilerim"
+                      onClick={() => {}}
+                    >
+                      <FavoriteBorderIcon />
+                    </IconButton>
 
-                  <Typography variant="body1" color="inherit">
-                    {item.Name}
-                  </Typography>
+                    <IconButton
+                      sx={{
+                        position: "absolute",
+                        top: 5,
+                        left: 23,
+                        bgcolor:
+                          theme.palette.mode === "light" ? "black" : "white",
+                        fontSize: "10px",
+                        ":hover": {
+                          bgcolor:
+                            theme.palette.mode === "light"
+                              ? "red"
+                              : "rebeccapurple",
+                        },
+                        color:
+                          theme.palette.mode === "light" ? "white" : "black",
+                      }}
+                      aria-label="Favorilerim"
+                      onClick={() => {}}
+                    >
+                      <ShoppingCart />
+                    </IconButton>
 
-                  <Typography variant="h6" color="red">
-                    {item.Price} TL
-                  </Typography>
-                </Box>
-              </div>
-            </Tooltip>
-          ))}
+                    <Typography variant="body1" color="inherit">
+                      {item.Name}
+                    </Typography>
+
+                    <Typography variant="h6" color="red">
+                      {item.Price} TL
+                    </Typography>
+                  </Box>
+                </div>
+              </Tooltip>
+            ))}
+          </Box>
         </Box>
       </Box>
-    </Box>
-  );
+    );
+  }
 }
 
 export default NewItems;

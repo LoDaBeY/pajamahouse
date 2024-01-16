@@ -16,6 +16,8 @@ import PhotoSlider3 from "../../../../Images/BigSlider3.webp";
 import PhotoSlider4 from "../../../../Images/BigSlider5.webp";
 import { Link } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../../../FirebaseConfig/config";
 
 const PajamaTakımı = [
   {
@@ -96,9 +98,13 @@ const ÇorapMenu = [
   { name: "Kadın Çorap", link: "KadınÇorap", photo: PhotoSlider2 },
 ];
 
+
+
 function PcListMenu() {
   const isLargeScreen = useMediaQuery("(min-width:700px)");
+  const [user] = useAuthState(auth);
 
+if (user) {
   if (!isLargeScreen) {
     return null;
   } else {
@@ -513,6 +519,7 @@ function PcListMenu() {
       </Box>
     );
   }
+}
 }
 
 export default PcListMenu;
