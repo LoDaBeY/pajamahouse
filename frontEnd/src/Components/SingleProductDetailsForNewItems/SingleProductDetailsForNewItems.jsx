@@ -4,12 +4,11 @@ import { useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./product-details.css";
 import DetailsThumb from "./DetailsThumb";
-import { useGetOneProductsApiNewItemsByNameQuery } from "../../../Redux/ProductsApi";
+import { useGetOneProductsApiNewItemsByNameQuery } from "../../Redux/ProductsApi";
 
 function SingleProductDetailsForNewItems() {
   let { id } = useParams();
   const { data } = useGetOneProductsApiNewItemsByNameQuery(id);
-console.log(data)
   const [setindexx] = useState(0);
   const myRef = useRef(null);
 

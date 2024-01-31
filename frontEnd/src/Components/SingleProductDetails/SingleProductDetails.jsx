@@ -7,10 +7,9 @@ import { useGetOneProductsByNameQuery } from "../../Redux/ProductsApi";
 
 function SingleProductDetails() {
   let { id } = useParams();
-  // const { data } = data.id > 12 ? useGetOneProductsApiNewItemsByNameQuery(id) : useGetOneProductsByNameQuery(id);
   const { data } = useGetOneProductsByNameQuery(id);
 
-  const [ setindex] = useState(0);
+  const [setindex] = useState(0);
   const myRef = useRef(null);
 
   const handleTab = (index) => {
