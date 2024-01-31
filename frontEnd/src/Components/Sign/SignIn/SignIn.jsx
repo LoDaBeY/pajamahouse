@@ -116,6 +116,7 @@ function SignIn({ handleClose, open }) {
                       // ...
                       navigate("/");
                       handleClose();
+                      console.log(user)
                     })
                     .catch((error) => {
                       const errorCode = error.code;

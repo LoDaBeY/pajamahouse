@@ -10,7 +10,7 @@ function SingleProductDetails() {
   // const { data } = data.id > 12 ? useGetOneProductsApiNewItemsByNameQuery(id) : useGetOneProductsByNameQuery(id);
   const { data } = useGetOneProductsByNameQuery(id);
 
-  const [index, setindex] = useState(0);
+  const [ setindex] = useState(0);
   const myRef = useRef(null);
 
   const handleTab = (index) => {

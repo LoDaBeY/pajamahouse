@@ -104,12 +104,13 @@ function SignUp() {
                     const user = userCredential.user;
                     console.log("user created successfully");
                     navigate("/")
+                    console.log(user)
                     // ...
                   })
                   .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    console.log("user not created");
+                    console.log(errorCode, errorMessage);
 
                     // ..
                   });

@@ -22,9 +22,7 @@ app.get("/NewItemsProductData/:id", (req, res) => {
     return item.Title === req.params.id;
   });
   res.send(OneProductItems);
-
 });
-
 
 app.get("/SmallerSliderProductData/:id", (req, res) => {
   const OneProduct = SmallerSliderProductData.find((item) => {
