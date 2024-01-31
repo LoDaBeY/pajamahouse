@@ -63,15 +63,15 @@ function NewItems() {
                     }}
                   >
                     <img
-                      className="Image"
-                      src={item.Image}
-                      alt={item.Title}
-                      style={{ borderRadius: "10px", width: "100%" }}
                       onClick={() => {
                         navigate(
                           `/SingleProductDetailsForNewItems/${item.Title}`
                         );
                       }}
+                      className="Image"
+                      src={item.Image}
+                      alt={item.Title}
+                      style={{ borderRadius: "10px", width: "100%" }}
                     />
                     <IconButton
                       sx={{
