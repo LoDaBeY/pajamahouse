@@ -17,6 +17,7 @@ import SignUp from "../src/Components/Sign/SignUp/SignUp";
 import Favori from "../src/Components/Favori/Favori";
 import Cart from "../src/Components/Cart/Cart";
 import SingleProductDetails from "../src/Components/SingleProductDetails/SingleProductDetails";
+import SingleProductDetailsForNewItems from "../src/Components/SingleProductDetails/SingleProductDetailsForNewItems/SingleProductDetailsForNewItems";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
       <Route path="Favori" element={<Favori />} />
       <Route path="Cart" element={<Cart />} />
       <Route path="SingleProductDetails/:id" element={<SingleProductDetails />} />
+      <Route path="SingleProductDetailsForNewItems/:id" element={<SingleProductDetailsForNewItems />} />
     </Route>
   )
 );

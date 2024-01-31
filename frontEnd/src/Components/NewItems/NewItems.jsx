@@ -2,9 +2,7 @@ import { Box, Typography, IconButton, useTheme, Tooltip } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { ShoppingCart } from "@mui/icons-material";
-import {
-  useGetProductsByNameQuery,
-} from "../../Redux/ProductsApi";
+import { useGetProductsByNameQuery } from "../../Redux/ProductsApi";
 import { useDispatch } from "react-redux";
 import { AddToCart, AddToCartFavori } from "../../Redux/CartcounterSlice";
 
@@ -14,7 +12,7 @@ function NewItems() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  if (data ) {
+  if (data) {
     return (
       <Box sx={{ width: "100%", mb: 5 }}>
         <Typography textAlign={"center"} variant="h6" color="inherit">
@@ -70,7 +68,9 @@ function NewItems() {
                       alt={item.Title}
                       style={{ borderRadius: "10px", width: "100%" }}
                       onClick={() => {
-                        navigate(`/SingleProductDetails/${item.Title}`);
+                        navigate(
+                          `/SingleProductDetailsForNewItems/${item.Title}`
+                        );
                       }}
                     />
                     <IconButton

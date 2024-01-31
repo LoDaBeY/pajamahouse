@@ -1,21 +1,21 @@
+import React from "react";
 import { Box } from "@mui/material";
 import { useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./product-details.css";
 import DetailsThumb from "./DetailsThumb";
-import { useGetOneProductsByNameQuery } from "../../Redux/ProductsApi";
+import { useGetOneProductsApiNewItemsByNameQuery } from "../../../Redux/ProductsApi";
 
-function SingleProductDetails() {
+function SingleProductDetailsForNewItems() {
   let { id } = useParams();
-  // const { data } = data.id > 12 ? useGetOneProductsApiNewItemsByNameQuery(id) : useGetOneProductsByNameQuery(id);
-  const { data } = useGetOneProductsByNameQuery(id);
-
-  const [ setindex] = useState(0);
+  const { data } = useGetOneProductsApiNewItemsByNameQuery(id);
+console.log(data)
+  const [setindexx] = useState(0);
   const myRef = useRef(null);
 
   const handleTab = (index) => {
     // @ts-ignore
-    setindex(index);
+    setindexx(index);
     const images = myRef.current.children;
     for (let i = 0; i < images.length; i++) {
       images[i].className = images[i].className.replace("active", "");
@@ -51,4 +51,4 @@ function SingleProductDetails() {
   }
 }
 
-export default SingleProductDetails;
+export default SingleProductDetailsForNewItems;
