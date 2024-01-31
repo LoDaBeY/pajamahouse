@@ -1,10 +1,9 @@
-import React from 'react'
 
-function DetailsThumb({myRef,images, tab}) {
+function DetailsThumb({myRef,ImageLink, tab}) {
   return (
     <div className="thumb" ref={myRef}>
         {
-        images.map((img, index) =>(
+        ImageLink.map((img, index) =>(
             <img src={img} alt="" key={index} 
             onClick={() => tab(index)}
             />

@@ -100,11 +100,30 @@ export const counterSlice = createSlice({
         );
       }
     },
+    Remover: (state, action) => {
+      const NewProductArryForFavori = state.CartProducts.filter((item) => {
+        return item.Title !== action.payload.Title;
+      });
+
+      NewProductArryForFavori.Quantity -= 1;
+      state.CartProducts = NewProductArryForFavori;
+      const NewProductArryForTitle = state.CartProductsTitle.filter((item) => {
+        return item !== action.payload.Title;
+      });
+      state.CartProductsTitle = NewProductArryForTitle;
+
+      localStorage.setItem(
+        "CartProductsTitle",
+        JSON.stringify(state.CartProductsTitle)
+      );
+
+      localStorage.setItem("CartProducts", JSON.stringify(state.CartProducts));
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { AddToCart, AddToCartFavori, Decrease, Increase } =
+export const { AddToCart, AddToCartFavori, Decrease, Increase, Remover } =
   counterSlice.actions;
 
 export default counterSlice.reducer;

@@ -6,6 +6,7 @@ import {
   CardContent,
   CardMedia,
   Divider,
+  IconButton,
   Stack,
   Typography,
   useMediaQuery,
@@ -23,7 +24,8 @@ import Footer from "../Footer/Footer";
 import { useGetProductsByNameQuery } from "../../Redux/ProductsApi";
 import { useDispatch, useSelector } from "react-redux";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { AddToCart } from "../../Redux/CartcounterSlice";
+import { AddToCart, Remover } from "../../Redux/CartcounterSlice";
+import { Delete } from "@mui/icons-material";
 
 function Favori() {
   const navigate = useNavigate();
@@ -32,7 +34,7 @@ function Favori() {
   const theme = useTheme();
   const { data } = useGetProductsByNameQuery("SmallerSliderProductData");
   // @ts-ignore
-  const { CartProducts } = useSelector((state) => state.CartShopName);
+  const { CartProducts, CartProductsTitle } = useSelector((state) => state.CartShopName);
   const dispatch = useDispatch();
 
   console.log(data);
@@ -87,22 +89,38 @@ function Favori() {
                 sx={{ justifyContent: "space-between" }}
                 disableSpacing
               >
-                <Button
-                  sx={{ textTransform: "capitalize", p: 1, lineHeight: 1.1 }}
-                  variant="contained"
-                  color="primary"
-                  onClick={() => {
-                    dispatch(AddToCart(item))
-                  }}
-
-                >
-                  <ShoppingCartIcon
-                    sx={{ mx: 1 }}
-                    color="inherit"
-                    fontSize="small"
-                  />
-                  Add to cart
-                </Button>
+                {CartProductsTitle.includes(item.Title) ? (
+                  <div
+                    dir="rtl"
+                    style={{ display: "flex", alignItems: "center" }}
+                  >
+                    <IconButton
+                      color="primary"
+                      sx={{ mr: "10px" }}
+                      onClick={() => {
+                        dispatch(Remover(item))
+                      }}
+                    >
+                      <Delete fontSize="small" />
+                    </IconButton>
+                  </div>
+                ) : (
+                  <Button
+                    sx={{ textTransform: "capitalize", p: 1, lineHeight: 1.1 }}
+                    variant="contained"
+                    color="primary"
+                    onClick={() => {
+                      dispatch(AddToCart(item));
+                    }}
+                  >
+                    <ShoppingCartIcon
+                      sx={{ mx: 1 }}
+                      color="inherit"
+                      fontSize="small"
+                    />
+                    Add to cart
+                  </Button>
+                )}
 
                 <Typography
                   mr={1}

@@ -17,5 +17,21 @@ app.get("/SmallerSliderProductData", (req, res) => {
   res.send(SmallerSliderProductData);
 });
 
+app.get("/NewItemsProductData/:id", (req, res) => {
+  const OneProductItems = NewItemsProductData.find((item) => {
+    return item.Title === req.params.id;
+  });
+  res.send(OneProductItems);
+
+});
+
+
+app.get("/SmallerSliderProductData/:id", (req, res) => {
+  const OneProduct = SmallerSliderProductData.find((item) => {
+    return item.Title === req.params.id;
+  });
+  res.send(OneProduct);
+});
+
 const port = process.env.PORT || 5000;
 app.listen(port, console.log(`http://localhost:${port}`));

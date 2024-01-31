@@ -40,7 +40,6 @@ function LandingPage() {
       ) : null}
       <PcListMenu />
       <Slider />
-      {user ? (
         <Divider
           sx={{
             my: 2,
@@ -52,7 +51,6 @@ function LandingPage() {
                 : "1px solid white",
           }}
         />
-      ) : null}
       <MiniSlider />
       <Divider
         sx={{

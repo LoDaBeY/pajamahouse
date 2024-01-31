@@ -26,7 +26,7 @@ const router = createBrowserRouter(
       <Route path="SignUp" element={<SignUp />} />
       <Route path="Favori" element={<Favori />} />
       <Route path="Cart" element={<Cart />} />
-      {/* <Route path="SingleProductDetails/:id" element={<SingleProductDetails />} /> */}
+      <Route path="SingleProductDetails/:id" element={<SingleProductDetails />} />
     </Route>
   )
 );

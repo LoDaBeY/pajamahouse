@@ -27,7 +27,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Add, Remove } from "@mui/icons-material";
 import { Decrease, Increase } from "../../Redux/CartcounterSlice";
 import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {},
