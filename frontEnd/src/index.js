@@ -5,7 +5,6 @@ import App from "./App";
 import LandingPage from "./Pages/LandingPage";
 import { store } from "./Redux/store.js";
 import { Provider } from "react-redux";
-
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -18,6 +17,8 @@ import Favori from "../src/Components/Favori/Favori";
 import Cart from "../src/Components/Cart/Cart";
 import SingleProductDetails from "../src/Components/SingleProductDetails/SingleProductDetails";
 import SingleProductDetailsForNewItems from "../src/Components/SingleProductDetailsForNewItems/SingleProductDetailsForNewItems.jsx";
+import { HelmetProvider } from "react-helmet-async";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration.js";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,8 +42,12 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <HelmetProvider>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </HelmetProvider>
   </React.StrictMode>
 );
+
+serviceWorkerRegistration.register();

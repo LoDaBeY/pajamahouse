@@ -4,10 +4,13 @@ import { useParams } from "react-router-dom";
 import "./product-details.css";
 import DetailsThumb from "./DetailsThumb";
 import { useGetOneProductsByNameQuery } from "../../Redux/ProductsApi";
+import IsLoadingAnime from "../../Animation/IsLoadingAnime.json";
+import Lottie from "lottie-react";
+import { Helmet } from "react-helmet-async";
 
 function SingleProductDetails() {
   let { id } = useParams();
-  const { data } = useGetOneProductsByNameQuery(id);
+  const { data, isLoading } = useGetOneProductsByNameQuery(id);
 
   const [setindex] = useState(0);
   const myRef = useRef(null);
@@ -22,9 +25,23 @@ function SingleProductDetails() {
     images[index].className = "active";
   };
 
+  if (isLoading) {
+    <Box>
+      <Lottie
+        animationData={IsLoadingAnime}
+        loop={true}
+        autoplay={true}
+        style={{ backgroundColor: "white", width: "100%", height: "100vh" }}
+      />
+    </Box>;
+  }
+
   if (data) {
     return (
       <Box>
+        <Helmet>
+          <title>Product's of Slider</title>
+        </Helmet>
         <div className="app details-page">
           <div className="details">
             <div className="big-img">

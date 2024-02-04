@@ -26,6 +26,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { AddToCart, Remover } from "../../Redux/CartcounterSlice";
 import { Delete } from "@mui/icons-material";
+import { Helmet } from "react-helmet-async";
 
 function Favori() {
   const navigate = useNavigate();
@@ -33,8 +34,10 @@ function Favori() {
   const isLargeScreen = useMediaQuery("(max-width:799px)");
   const theme = useTheme();
   const { data } = useGetProductsByNameQuery("SmallerSliderProductData");
-  // @ts-ignore
-  const { CartProducts, CartProductsTitle } = useSelector((state) => state.CartShopName);
+  const { CartProducts, CartProductsTitle } = useSelector(
+    // @ts-ignore
+    (state) => state.CartShopName
+  );
   const dispatch = useDispatch();
 
   console.log(data);
@@ -46,6 +49,9 @@ function Favori() {
   });
   return (
     <Box>
+      <Helmet>
+        <title>Favori Page</title>
+      </Helmet>
       <SearchBar />
       {isLargeScreen && <YeniOzel />}
       {!user ? (
@@ -98,7 +104,7 @@ function Favori() {
                       color="primary"
                       sx={{ mr: "10px" }}
                       onClick={() => {
-                        dispatch(Remover(item))
+                        dispatch(Remover(item));
                       }}
                     >
                       <Delete fontSize="small" />

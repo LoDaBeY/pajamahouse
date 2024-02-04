@@ -5,12 +5,28 @@ import { ShoppingCart } from "@mui/icons-material";
 import { useGetProductsByNameQuery } from "../../Redux/ProductsApi";
 import { useDispatch } from "react-redux";
 import { AddToCart, AddToCartFavori } from "../../Redux/CartcounterSlice";
+import IsLoadingAnime from "../../Animation/IsLoadingAnime.json";
+import Lottie from "lottie-react";
+
 
 function NewItems() {
-  const { data } = useGetProductsByNameQuery("NewItemsProductData");
+  const { data, isLoading } = useGetProductsByNameQuery("NewItemsProductData");
   const theme = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  if (isLoading) {
+return (
+  <Box>
+  <Lottie
+    animationData={IsLoadingAnime}
+    loop={true}
+    autoplay={true}
+    style={{ backgroundColor: "inherit", width: "100%", height: "100%" }}
+  />
+</Box>
+)
+  }
 
   if (data) {
     return (

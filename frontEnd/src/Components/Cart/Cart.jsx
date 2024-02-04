@@ -28,6 +28,7 @@ import { Add, Remove } from "@mui/icons-material";
 import { Decrease, Increase } from "../../Redux/CartcounterSlice";
 import { useEffect } from "react";
 import {  useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {},
@@ -55,7 +56,11 @@ function Cart() {
 
   if (user) {
     return (
+      
       <Box>
+         <Helmet>
+        <title>Cart</title>
+      </Helmet>
         <SearchBar />
         {isLargeScreen && <YeniOzel />}
         {!user ? (

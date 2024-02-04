@@ -20,6 +20,7 @@ import { Person } from "@mui/icons-material";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../FirebaseConfig/config";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 function SignUp() {
   const theme = useTheme();
@@ -32,6 +33,9 @@ function SignUp() {
 
   return (
     <Box>
+      <Helmet>
+        <title>Sign-Up Page</title>
+      </Helmet>
       <SearchBar />
       {isLargeScreen && <YeniOzel />}
       <PcListMenu />
@@ -103,8 +107,8 @@ function SignUp() {
                     // Signed up
                     const user = userCredential.user;
                     console.log("user created successfully");
-                    navigate("/")
-                    console.log(user)
+                    navigate("/");
+                    console.log(user);
                     // ...
                   })
                   .catch((error) => {

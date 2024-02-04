@@ -5,7 +5,7 @@ import "swiper/css/pagination";
 import "./styles.css";
 import { Autoplay, Pagination } from "swiper/modules";
 import Typography from "@mui/material/Typography";
-import { IconButton, Stack, Tooltip, useTheme } from "@mui/material";
+import { Box, IconButton, Stack, Tooltip, useTheme } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { ShoppingCart } from "@mui/icons-material";
 
@@ -14,12 +14,30 @@ import { useDispatch } from "react-redux";
 import { AddToCart } from "../../Redux/CartcounterSlice";
 import { AddToCartFavori } from "../../Redux/CartcounterSlice";
 import { useNavigate } from "react-router-dom";
+import Lottie from "lottie-react";
+import IsLoadingAnime from "../../Animation/IsLoadingAnime.json";
 
 function MiniSlider() {
-  const { data } = useGetProductsByNameQuery("SmallerSliderProductData");
+  const { data, isLoading } = useGetProductsByNameQuery(
+    "SmallerSliderProductData"
+  );
   const theme = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  if (isLoading) {
+    return (
+      <Box>
+        <Lottie
+          animationData={IsLoadingAnime}
+          loop={true}
+          autoplay={true}
+          style={{ backgroundColor: "inherit", width: "50%", height: "50%" }}
+        />
+      </Box>
+    );
+  }
+  console.log(isLoading);
 
   if (data) {
     return (
