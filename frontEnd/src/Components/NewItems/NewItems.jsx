@@ -22,8 +22,8 @@ return (
     animationData={IsLoadingAnime}
     loop={true}
     autoplay={true}
-    style={{ backgroundColor: "inherit", width: "100%", height: "100%" }}
-  />
+    style={{ backgroundColor: "inherit", width: "50%", height: "50%" }}
+    />
 </Box>
 )
   }
